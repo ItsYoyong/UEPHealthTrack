@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEP HealthTrack - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-container">
+                <img src="images/UEPlogo.png" alt="UEP" class="logo-img" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <span class="uep-part">UEP</span>
+                    <span class="healthtrack-part">HEALTHTRACK</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html" class="active-link">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="appointment.html" class="btn-appointment">Appointment</a>
+                <div class="user-icon" onclick="window.location.href='profile.html'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="hero-container">
+        <div class="hero-graphic">
+            <div class="shape-orange"></div>
+            <div class="shape-blue"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="intro-label">
+                    <span>Our Introduction</span>
+                    <span class="orange-dash"></span>
+                </div>
+                <h1>Book Your Appointment Online For The University Clinic</h1>
+                <p class="hero-description">Your health is our priority. Skip the wait and manage your medical visits online. Whether you need a routine check-up or a specific consultation, our platform ensures you get the care you need, when you need it, so you can focus on your studies.</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <h3>Pending Visits</h3>
+                        <div class="stat-number" id="statPending">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Today</h3>
+                        <div class="stat-number" id="statToday">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>All-Time Records</h3>
+                        <div class="stat-number" id="statAllTime">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEP HealthTrack - Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-container">
+                <img src="images/UEPlogo.png" alt="UEP" class="logo-img" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <span class="uep-part">UEP</span>
+                    <span class="healthtrack-part">HEALTHTRACK</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="appointment.html" class="btn-appointment">Appointment</a>
+                <div class="user-icon" onclick="window.location.href='profile.html'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="page-container">
+        <div class="dashboard-grid">
+            <div class="profile-card-container">
+                <div class="profile-inner-box">
+                    <div class="profile-avatar" style="font-size:40px; font-weight:900; background:white; color:var(--uep-blue); width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 15px auto;">
+                        --
+                    </div>
+                    <h2 id="dispName" style="margin-bottom:5px; font-size:20px;">Guest User</h2>
+                    <p style="opacity:0.8; margin-bottom:25px; font-size:14px;">Student ID: <span id="dispID">---</span></p>
+
+                    <div class="profile-details-list" style="text-align:left; margin-bottom:30px;">
+                        <div class="detail-item">
+                            <span class="icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                    <path d="M12 11v10"></path>
+                                    <path d="M9 16h6"></path>
+                                </svg>
+                            </span>
+                            <span id="dispSex">---</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </span>
+                            <span id="dispEmail">---</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </span>
+                            <span id="dispAddress">---</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </span>
+                            <span id="dispBirthday">---</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="icon-box">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
+                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                                </svg>
+                            </span>
+                            <span id="dispCourse">---</span>
+                        </div>
+                    </div>
+                    <div class="profile-buttons">
+                        <button id="editProfileBtn" class="edit-btn">Edit Profile</button>
+                        <button id="logoutBtn" class="logout-btn">Logout</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="info-card">
+                    <div class="card-header-row">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        <h3>UPCOMING APPOINTMENT</h3>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top:15px;">
+                        <div>
+                            <span style="opacity:0.7; font-size:12px;">DATE & TIME</span><br>
+                            <span class="value-large" id="dispDate">No Appointment</span>
+                        </div>
+                        <div>
+                            <span style="opacity:0.7; font-size:12px;">REASON</span><br>
+                            <span class="value-large" id="dispReason"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card" style="margin-top: 20px;">
+                    <div class="card-header-row">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <h3>RECENT CLINIC VISITS</h3>
+                    </div>
+                    <table class="recent-table">
+                        <tbody id="recentVisitsBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="editModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Edit Profile</h3>
+            <form id="editForm">
+                <div class="form-group">
+                    <label>Full Name (Fixed)</label>
+                    <input type="text" id="editName" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Student ID (Fixed)</label>
+                    <input type="text" id="editID" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Sex</label>
+                    <select id="editSex" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Course</label>
+                    <input type="text" id="editCourse" required>
+                </div>
+                <div class="form-group">
+                    <label>Birthday</label>
+                    <input type="date" id="editBirthday" required>
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" id="editAddress" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="editEmail" required>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelEditBtn" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
