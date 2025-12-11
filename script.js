@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ============================
-    // 8. ADMIN DASHBOARD LOGIC (CSV Export, System Lock)
+    // 8. ADMIN DASHBOARD LOGIC (CSV Export, System Lock, Mobile Table Fix)
     // ============================
     const adminAppList = document.getElementById('adminAppointmentList');
     if (adminAppList) {
@@ -505,14 +505,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (user.date) {
                 hasAppointment = true;
                 const row = document.createElement('tr');
+                // Added data-label for Mobile Cards
                 row.innerHTML = `
-                    <td>${user.fullName}</td>
-                    <td>${user.id}</td>
-                    <td>${user.course || 'N/A'}</td>
-                    <td>${user.date}</td>
-                    <td>${user.time}</td>
-                    <td>${user.reason}</td>
-                    <td><button class="mark-done-btn" data-user="${username}">Complete</button></td>
+                    <td data-label="Student Name">${user.fullName}</td>
+                    <td data-label="Student ID">${user.id}</td>
+                    <td data-label="Course">${user.course || 'N/A'}</td>
+                    <td data-label="Date">${user.date}</td>
+                    <td data-label="Time">${user.time}</td>
+                    <td data-label="Reason">${user.reason}</td>
+                    <td data-label="Action"><button class="mark-done-btn" data-user="${username}">Complete</button></td>
                 `;
                 adminAppList.appendChild(row);
             }
@@ -520,11 +521,11 @@ document.addEventListener('DOMContentLoaded', function() {
             // Student List Table
             const rowS = document.createElement('tr');
             rowS.innerHTML = `
-                <td style="color:#333;">${user.fullName}</td>
-                <td style="color:#333;">${user.id}</td>
-                <td style="color:#333;">${user.sex}</td>
-                <td style="color:${user.date ? 'green' : 'grey'}; font-weight:bold;">${user.date ? 'Active' : 'Idle'}</td>
-                <td><button class="view-history-btn" data-user="${username}" style="background-color:var(--uep-blue); color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">View History</button></td>
+                <td data-label="Name" style="color:#333;">${user.fullName}</td>
+                <td data-label="ID Number" style="color:#333;">${user.id}</td>
+                <td data-label="Sex" style="color:#333;">${user.sex}</td>
+                <td data-label="Status" style="color:${user.date ? 'green' : 'grey'}; font-weight:bold;">${user.date ? 'Active' : 'Idle'}</td>
+                <td data-label="History"><button class="view-history-btn" data-user="${username}" style="background-color:var(--uep-blue); color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;">View History</button></td>
             `;
             studentListBody.appendChild(rowS);
         });
@@ -617,10 +618,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         const rec = h.recommendation || "---";
                         historyBody.innerHTML += `
                             <tr>
-                                <td style="color:#333;">${h.date}</td>
-                                <td style="color:#333;">${h.reason}</td>
-                                <td style="color:#333; font-weight:600;">${diag}</td>
-                                <td style="color:var(--uep-orange); font-weight:600;">${rec}</td>
+                                <td data-label="Date" style="color:#333;">${h.date}</td>
+                                <td data-label="Reason" style="color:#333;">${h.reason}</td>
+                                <td data-label="Diagnosis" style="color:#333; font-weight:600;">${diag}</td>
+                                <td data-label="Treatment" style="color:var(--uep-orange); font-weight:600;">${rec}</td>
                             </tr>
                         `;
                     });
