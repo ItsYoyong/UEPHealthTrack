@@ -5,6 +5,7 @@
     <title>UEP HealthTrack - Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header class="site-header">
@@ -43,49 +44,31 @@
                     <div class="profile-details-list" style="text-align:left; margin-bottom:30px;">
                         <div class="detail-item">
                             <span class="icon-box">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                    <path d="M12 11v10"></path>
-                                    <path d="M9 16h6"></path>
-                                </svg>
+                                <i class="fas fa-venus-mars" style="color:#ffa50c;"></i>
                             </span>
                             <span id="dispSex">---</span>
                         </div>
                         <div class="detail-item">
                             <span class="icon-box">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
+                                <i class="fas fa-envelope" style="color:#ffa50c;"></i>
                             </span>
                             <span id="dispEmail">---</span>
                         </div>
                         <div class="detail-item">
                             <span class="icon-box">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
+                                <i class="fas fa-map-marker-alt" style="color:#ffa50c;"></i>
                             </span>
                             <span id="dispAddress">---</span>
                         </div>
                         <div class="detail-item">
                             <span class="icon-box">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
+                                <i class="fas fa-birthday-cake" style="color:#ffa50c;"></i>
                             </span>
                             <span id="dispBirthday">---</span>
                         </div>
                         <div class="detail-item">
                             <span class="icon-box">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#ffa50c" stroke-width="2">
-                                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
-                                    <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-                                </svg>
+                                <i class="fas fa-graduation-cap" style="color:#ffa50c;"></i>
                             </span>
                             <span id="dispCourse">---</span>
                         </div>
@@ -100,12 +83,7 @@
             <div class="dashboard-content">
                 <div class="info-card">
                     <div class="card-header-row">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
+                        <i class="far fa-calendar-check" style="font-size:24px; margin-right:10px;"></i>
                         <h3>UPCOMING APPOINTMENT</h3>
                     </div>
                     <div style="display:flex; justify-content:space-between; margin-top:15px;">
@@ -122,15 +100,12 @@
 
                 <div class="info-card" style="margin-top: 20px;">
                     <div class="card-header-row">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
+                        <i class="fas fa-history" style="font-size:24px; margin-right:10px;"></i>
                         <h3>RECENT CLINIC VISITS</h3>
                     </div>
-                    <table class="recent-table">
-                        <tbody id="recentVisitsBody"></tbody>
-                    </table>
+                    
+                    <div id="recentVisitsContainer" class="visit-list">
+                        </div>
                 </div>
             </div>
         </div>

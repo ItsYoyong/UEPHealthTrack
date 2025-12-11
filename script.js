@@ -390,21 +390,53 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('dispDate').innerText = "No Appointment";
             }
 
-            const historyBody = document.getElementById('recentVisitsBody');
-            if (historyBody) {
+            // --- RECENT VISITS (Updated Logic with New List Style) ---
+            const historyContainer = document.getElementById('recentVisitsContainer');
+            if (historyContainer) {
                 if (user.history && user.history.length > 0) {
-                    historyBody.innerHTML = "";
+                    historyContainer.innerHTML = "";
                     const reversedHistory = [...user.history].reverse();
+                    
                     reversedHistory.forEach(visit => {
-                        let diagnosisText = visit.diagnosis ? `<br><small style="color:gray;">Dx: ${visit.diagnosis}</small>` : "";
-                        let recText = visit.recommendation ? `<br><small style="color:#ffa50c;">Rec: ${visit.recommendation}</small>` : "";
-                        
-                        historyBody.innerHTML += `<tr><td>${visit.date}</td><td>${visit.reason}${diagnosisText}${recText}</td><td class="status-completed" style="color:green;">Completed</td></tr>`;
+                        let detailsBlock = "";
+                        if (visit.diagnosis || visit.recommendation) {
+                            let diagHtml = visit.diagnosis ? 
+                                `<div class="detail-line"><span class="detail-label">Diagnosis:</span><span class="detail-text">${visit.diagnosis}</span></div>` : "";
+                            let recHtml = visit.recommendation ? 
+                                `<div class="detail-line"><span class="detail-label">Treatment:</span><span class="detail-text">${visit.recommendation}</span></div>` : "";
+                            
+                            detailsBlock = `<div class="visit-details">${diagHtml}${recHtml}</div>`;
+                        }
+
+                        historyContainer.innerHTML += `
+                            <div class="visit-row">
+                                <div class="visit-date-box">
+                                    <i class="far fa-calendar-alt" style="margin-right:5px; opacity:0.7;"></i>
+                                    ${visit.date}
+                                </div>
+                                <div class="visit-info-box">
+                                    <span class="visit-reason">${visit.reason}</span>
+                                    ${detailsBlock}
+                                </div>
+                                <div class="visit-status">
+                                    <span class="status-pill">Completed</span>
+                                </div>
+                            </div>
+                        `;
                     });
                 } else if (user.date) {
-                    historyBody.innerHTML = `<tr><td>${user.date}</td><td>${user.reason}</td><td style="color:#ffa50c; font-weight:bold;">Upcoming</td></tr>`;
+                    historyContainer.innerHTML = `
+                        <div class="visit-row">
+                            <div class="visit-date-box">${user.date}</div>
+                            <div class="visit-info-box">
+                                <span class="visit-reason">${user.reason}</span>
+                            </div>
+                            <div class="visit-status">
+                                <span class="status-pill" style="background:var(--uep-orange); color:black;">Upcoming</span>
+                            </div>
+                        </div>`;
                 } else {
-                    historyBody.innerHTML = `<tr><td colspan="3" style="text-align:center; opacity:0.7;">No recent visits.</td></tr>`;
+                    historyContainer.innerHTML = `<p style="text-align:center; opacity:0.7; font-style:italic; padding:20px;">No recent clinic visits recorded.</p>`;
                 }
             }
         }
