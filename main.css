@@ -1,7 +1,10 @@
 :root {
-    --uep-blue: #1a45a8;
-    --uep-orange: #fdb913;
+    /* UPDATED: Exact colors extracted from your Figma file */
+    --uep-blue: #113bbc;   
+    --uep-orange: #ffa50c; 
     --light-grey: #e6e6e6;
+    --glass-bg: rgba(20, 20, 20, 0.2);
+    --text-white: #ffffff;
 }
 
 body {
@@ -328,7 +331,7 @@ body {
     font-weight: 700;
 }
 
-/* --- FORMS --- */
+/* --- FORMS (General) --- */
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -675,14 +678,6 @@ body {
     margin-top: 20px;
 }
 
-.glass-input-group input:disabled,
-.form-group input:disabled {
-    background-color: rgba(200, 200, 200, 0.3);
-    color: #999;
-    cursor: not-allowed;
-    border-color: #ccc;
-}
-
 .btn-save {
     flex: 1;
     background-color: var(--uep-blue);
@@ -705,355 +700,495 @@ body {
     cursor: pointer;
 }
 
-/* --- REGISTER/LOGIN PAGE (UPDATED) --- */
+/* ========================================= */
+/* NEW CLEAN LOGIN & REGISTER STYLES    */
+/* ========================================= */
+
 body.register-page {
-    background-image: url('background.jpg');
+    /* Darker overlay added to image for better text readability */
+    background: linear-gradient(rgba(17, 59, 188, 0.8), rgba(17, 59, 188, 0.9)), url('background.jpg');
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* IMPORTANT: Keeps BG stable on scroll */
-    min-height: 100vh; /* IMPORTANT: Allows body to grow with content */
-    margin: 0;
+    background-attachment: fixed;
+    min-height: 100vh;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 100px;
-    font-family: 'Inter', sans-serif;
-    overflow-y: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px; 
+    padding-bottom: 80px;
     position: relative;
-    padding-bottom: 50px; /* Space at bottom */
 }
 
-.register-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(26, 69, 168, 0.9) 0%, rgba(26, 69, 168, 0.7) 100%);
-    z-index: 1;
-}
-
+/* The White Curve at the bottom */
 body.register-page::after {
     content: '';
     position: fixed;
     bottom: -50px;
     left: -10%;
     width: 120%;
-    height: 250px;
+    height: 180px; 
     background: white;
     border-radius: 50% 50% 0 0;
-    border-top: 10px solid #fdb913;
-    z-index: 2;
+    border-top: 8px solid var(--uep-orange); 
+    z-index: 1;
 }
 
 .register-layout-container {
     position: relative;
-    z-index: 3;
+    z-index: 10;
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 100px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
     width: 100%;
-    max-width: 1400px;
-    padding: 0 40px;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
-/* --- UPDATED: Sticky Welcome Text --- */
+/* Typography */
 .register-welcome-text {
+    text-align: center;
     color: white;
-    text-align: left;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    margin-top: 40px;
-    /* Sticky magic starts here */
-    position: -webkit-sticky; /* for Safari */
-    position: sticky;
-    top: 150px; /* Adjust this distance from top */
-    align-self: flex-start; /* Ensures it stays at top of flex container */
+    margin-bottom: 10px;
 }
 
 .register-welcome-text h1 {
-    font-size: 70px;
-    font-weight: 900;
+    font-size: 32px;
+    font-weight: 800;
     font-style: italic;
     margin: 0;
-    line-height: 1;
+    line-height: 1.2;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
 .register-welcome-text h2 {
-    font-size: 45px;
-    font-weight: 800;
-    margin: 15px 0 0 0;
-    line-height: 1.2;
-    text-transform: uppercase;
-}
-
-.register-card-glass {
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    border-radius: 30px;
-    padding: 40px;
-    width: 500px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    color: white;
-}
-
-.form-header {
-    text-align: center;
-    font-size: 36px;
-    font-weight: 900;
-    margin-bottom: 25px;
-    margin-top: 0;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 5px 0 0 0;
+    opacity: 0.9;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+/* The Glass Card */
+.register-card-glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 24px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    margin-bottom: 100px;
+}
+
+.form-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Cleaner Inputs */
 .glass-input-group {
     margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
 }
 
 .glass-input-group label {
     display: block;
-    font-size: 14px;
+    font-size: 13px;
     margin-bottom: 8px;
-    font-weight: 700;
-    opacity: 1;
-    color: white;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.glass-input-group input {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    border-radius: 12px;
-    padding: 14px 18px;
-    color: #ffffff !important;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
     font-weight: 600;
-    outline: none;
-    transition: all 0.2s ease;
+    color: rgba(255, 255, 255, 0.9);
+    margin-left: 5px;
 }
 
-.glass-input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.glass-input-group input:focus {
-    background: rgba(0, 0, 0, 0.5);
-    border-color: #fdb913;
-    box-shadow: 0 0 15px rgba(253, 185, 19, 0.3);
-}
-
-/* Glass Select (New for Sex Dropdown) */
+.glass-input-group input,
 .glass-select {
     width: 100%;
-    background: rgba(0, 0, 0, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 12px;
-    padding: 14px 18px;
+    padding: 14px 16px;
     color: white;
+    font-size: 15px;
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
     outline: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .glass-select option {
-    background-color: white;
+    background: white;
     color: black;
 }
 
-.glass-input-group input:-webkit-autofill,
-.glass-input-group input:-webkit-autofill:hover,
-.glass-input-group input:-webkit-autofill:focus,
-.glass-input-group input:-webkit-autofill:active {
-    -webkit-text-fill-color: white !important;
-    -webkit-box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.3) inset !important;
-    transition: background-color 5000s ease-in-out 0s;
+/* Focus State */
+.glass-input-group input:focus,
+.glass-select:focus {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--uep-orange);
+    box-shadow: 0 0 10px rgba(255, 165, 12, 0.2);
 }
 
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 30px;
+.glass-input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
 }
 
-#loginForm .form-actions {
-    justify-content: center;
-}
-
-.btn-create {
-    background: #fdb913;
-    color: #000000;
-    border: 2px solid white;
-    padding: 14px 60px;
-    border-radius: 30px;
-    font-size: 18px;
-    font-weight: 900;
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s, background 0.2s;
-    text-transform: uppercase;
-}
-
-.btn-create:hover {
-    transform: scale(1.05);
-    background: white;
-    color: #1a45a8;
-    border-color: #1a45a8;
-}
-
-/* --- UPDATED LOGIN REDIRECTS --- */
-
-/* 1. Default Style (For REGISTER PAGE - Keeps the Box) */
-.login-redirect {
-    text-align: center;
-    margin-top: 25px;
-    font-size: 15px;
-    color: white;
-    font-weight: 700;
-    background: rgba(0, 0, 0, 0.5); /* Box enabled */
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
-}
-
-.login-redirect a {
-    color: #fdb913;
-    opacity: 1;
-    text-decoration: none;
-    font-weight: 900;
-    margin-left: 5px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.login-redirect a:hover {
-    color: white;
-    text-decoration: underline;
-}
-
-/* 2. No-Frame Modifier (For LOGIN PAGE - Removes the Box) */
-.login-redirect.no-frame {
-    background: none;
-    border: none;
-    padding: 0;
-    box-shadow: none;
-}
-
+/* Side-by-side inputs for Register Form */
 .form-row-glass {
     display: flex;
     gap: 15px;
+    width: 100%;
 }
 
 .form-row-glass .glass-input-group {
     flex: 1;
 }
 
-/* --- MOBILE RESPONSIVENESS (UPDATED) --- */
-@media (max-width: 1100px) {
-    .register-layout-container {
-        flex-direction: column;
-        gap: 20px; /* Reduced gap */
-        align-items: center;
-        padding: 0 15px; /* Less side padding for mobile */
-    }
+/* Create/Login Buttons */
+.btn-create {
+    width: 100%;
+    background: var(--uep-orange);
+    color: #000;
+    border: none;
+    padding: 14px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(255, 165, 12, 0.3);
+    transition: transform 0.2s, background 0.2s;
+    margin-top: 10px;
+}
 
-    .register-welcome-text {
-        text-align: center;
-        margin-top: 0;
-        width: 100%;
-        /* IMPORTANT: Remove sticky on mobile so it doesn't float over content */
-        position: static; 
-    }
-    
-    .register-welcome-text h1 {
-        font-size: 40px; /* Smaller font on mobile */
-    }
+.btn-create:hover {
+    background: white;
+    transform: translateY(-2px);
+}
 
-    .register-welcome-text h2 {
-        font-size: 24px; /* Smaller font on mobile */
-    }
-    
-    .register-card-glass {
-        width: 100%;
-        max-width: 500px;
-        padding: 25px;
-        margin-bottom: 120px; /* Add space at bottom so it doesn't hit the white curve */
-    }
-    
-    .site-header {
-        height: auto;
-        padding: 15px;
-        flex-direction: column;
-    }
-    
-    .header-content {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .brand-text {
-        justify-content: center;
-        flex-wrap: wrap;
-        text-align: center;
-    }
-    
-    .brand-text .uep-part {
-        font-size: 38px;
-    }
-    
-    .brand-text .healthtrack-part {
-        font-size: 24px;
-        margin-left: 0;
-        display: block;
-        width: 100%;
-        text-align: center;
-    }
-    
-    .main-nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
+/* Links below button */
+.login-redirect.no-frame {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
 
-    body.register-page {
-        padding-top: 20px;
-        height: auto;
-        /* Note: min-height handles the size now */
-    }
+.login-redirect {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.8);
+}
 
-    /* Keep the white curve but ensure z-index is correct */
-    body.register-page::after {
-        position: fixed;
-        bottom: -50px;
-        z-index: 2;
-    }
+.login-redirect a {
+    color: var(--uep-orange);
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+}
 
-    .hero-container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .hero-content {
-        width: 100%;
-        padding: 30px 20px;
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-row, .form-row-glass {
-        grid-template-columns: 1fr;
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .form-row-glass {
         flex-direction: column;
         gap: 0;
     }
+}
+
+/* Laptop/Desktop View */
+@media (min-width: 1024px) {
+    body.register-page {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 120px;
+    }
+
+    .register-layout-container {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 80px;
+    }
+
+    /* Sticky Welcome Text */
+    .register-welcome-text {
+        text-align: left;
+        position: sticky;
+        top: 150px;
+        margin-top: 50px;
+        max-width: 500px;
+    }
+
+    .register-welcome-text h1 {
+        font-size: 64px;
+        line-height: 1.1;
+    }
+
+    .register-welcome-text h2 {
+        font-size: 36px;
+    }
+
+    .register-card-glass {
+        margin-top: 0;
+        width: 480px;
+        padding: 40px;
+    }
+}
+
+/* ========================================= */
+/* ABOUT US PAGE STYLES                      */
+/* ========================================= */
+
+/* Mission Banner */
+.mission-banner {
+    background: var(--uep-blue);
+    color: white;
+    border-radius: 15px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    border-left: 8px solid var(--uep-orange);
+    box-shadow: 0 10px 20px rgba(26, 69, 168, 0.2);
+}
+
+.mission-icon svg {
+    width: 60px;
+    height: 60px;
+    color: var(--uep-orange);
+}
+
+.mission-text h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    font-weight: 800;
+    font-style: italic;
+}
+
+.mission-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 0.9;
+}
+
+/* About Layout Grid */
+.about-grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Columns */
+    gap: 30px;
+}
+
+.section-heading {
+    color: var(--uep-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Contact Info Rows */
+.info-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.icon-circle {
+    width: 45px;
+    height: 45px;
+    background: #e6eefc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--uep-blue);
+    flex-shrink: 0;
+}
+
+.icon-circle svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Visuals Column */
+.visual-card {
+    border: 4px solid var(--uep-blue);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    background: white;
+}
+
+.visual-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.visual-caption {
+    background: var(--uep-blue);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 900px) {
+    .about-grid-layout {
+        grid-template-columns: 1fr; /* Stack on mobile */
+    }
+    
+    .mission-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+}
+
+/* ========================================= */
+/* LEADERSHIP / DIRECTOR SECTION             */
+/* ========================================= */
+
+.leadership-section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.director-card {
+    background: white;
+    border-radius: 15px;
+    border: 3px solid var(--uep-blue);
+    box-shadow: 0 10px 25px rgba(26, 69, 168, 0.15);
+    overflow: hidden;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.director-img-box {
+    width: 250px;
+    height: 250px;
+    background-color: #e6eefc;
+    flex-shrink: 0;
+    border-right: 3px solid var(--uep-orange);
+}
+
+.director-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.director-info-box {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.director-role {
+    color: var(--uep-orange);
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.director-name {
+    color: var(--uep-blue);
+    font-size: 26px;
+    font-weight: 900;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.director-bio {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+    margin: 0;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .director-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .director-img-box {
+        width: 100%;
+        height: 300px;
+        border-right: none;
+        border-bottom: 3px solid var(--uep-orange);
+    }
+
+    .director-info-box {
+        padding: 25px;
+    }
+}
+
+/* ========================================= */
+/* ADMIN DASHBOARD STYLES                    */
+/* ========================================= */
+
+.admin-table {
+    width: 100%;
+    min-width: 800px; /* Forces scroll on small screens */
+}
+
+.admin-table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid var(--uep-orange);
+}
+
+.admin-table.light-mode th {
+    background-color: #f0f0f0;
+    color: var(--uep-blue);
+    border-bottom: 2px solid var(--uep-blue);
+}
+
+.mark-done-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.mark-done-btn:hover {
+    background-color: #218838;
 }

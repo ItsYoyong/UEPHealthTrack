@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEP HealthTrack - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="images/UEPlogo.png" alt="UEP" class="logo-img" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <span class="uep-part">UEP</span>
+                    <span class="healthtrack-part">ADMIN</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <span style="color: white; font-weight: 600; margin-right: 10px;">Welcome, Staff</span>
+                <button id="adminSettingsBtn" class="btn-appointment" style="margin-right: 10px;">Settings</button>
+                <button id="adminLogoutBtn" class="btn-appointment" style="background: #ff6b6b; color: white !important; border: none;">Logout</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-container" style="max-width: 1400px;">
+        <div class="page-title-group">
+            <h1>CLINIC DASHBOARD</h1>
+            <div class="title-accent-line"></div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1fr;">
+            
+            <div class="info-card">
+                <div class="card-header-row">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <h3>ACTIVE APPOINTMENTS</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="recent-table admin-table">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Student ID</th>
+                                <th>Course</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Reason</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminAppointmentList">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="info-card" style="background-color: white; border: 2px solid var(--uep-blue);">
+                <div class="card-header-row">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--uep-blue)" stroke-width="2" style="margin-right:10px;">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    <h3 style="color: var(--uep-blue);">STUDENT RECORDS DATABASE</h3>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="recent-table admin-table light-mode">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>ID Number</th>
+                                <th>Sex</th>
+                                <th>Status</th>
+                                <th>Medical Records</th> </tr>
+                        </thead>
+                        <tbody id="adminStudentList">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="adminSettingsModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Admin System Settings</h3>
+            <form id="adminSettingsForm">
+                
+                <h4 style="color:var(--uep-blue); margin-bottom:10px; border-bottom:1px solid #eee;">Admin Account</h4>
+                <div class="form-group">
+                    <label>Change Username</label>
+                    <input type="text" id="newAdminUser" placeholder="Current: admin">
+                </div>
+                <div class="form-group">
+                    <label>Change Password</label>
+                    <input type="password" id="newAdminPass" placeholder="Leave blank to keep current">
+                </div>
+
+                <h4 style="color:var(--uep-orange); margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">System Controls</h4>
+                
+                <div class="form-group" style="display:flex; align-items:center; gap:10px; background:#f9f9f9; padding:10px; border-radius:5px;">
+                    <input type="checkbox" id="toggleBookingSystem" style="width:20px; height:20px;" checked>
+                    <label for="toggleBookingSystem" style="margin:0; cursor:pointer;">Enable Student Booking System</label>
+                </div>
+                <p style="font-size:12px; color:gray; margin-top:5px;">Unchecking this will lock the calendar for all students.</p>
+
+                <h4 style="color:#28a745; margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">Data Management</h4>
+                
+                <div style="display:flex; gap:10px;">
+                    <button type="button" id="btnExportCSV" style="flex:1; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
+                        <i class="fas fa-file-excel"></i> Export to Excel (CSV)
+                    </button>
+                    
+                    <button type="button" id="btnClearData" style="flex:1; background:#d9534f; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
+                        <i class="fas fa-trash"></i> Reset System
+                    </button>
+                </div>
+
+                <div class="modal-actions" style="margin-top:25px;">
+                    <button type="button" id="cancelAdminSettings" class="btn-cancel">Close</button>
+                    <button type="submit" class="btn-save">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="diagnosisModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3 class="modal-title">Complete Appointment</h3>
+            <p style="margin-bottom:15px;">Patient: <strong id="diagPatientName">Student</strong></p>
+            <form id="diagnosisForm">
+                
+                <div class="form-group">
+                    <label>Doctor's Diagnosis / Findings</label>
+                    <textarea id="diagInput" rows="2" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Common Cold, Fever" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Recommendation / Prescription</label>
+                    <textarea id="diagRecInput" rows="3" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Prescribed Paracetamol 500mg, Bed rest for 3 days." required></textarea>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelDiagBtn" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-save">Save & Complete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="medicalRecordsModal" class="modal-overlay">
+        <div class="modal-content" style="max-width: 900px;"> 
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid var(--uep-orange); padding-bottom:10px; margin-bottom:20px;">
+                <h3 class="modal-title" style="border:none; margin:0;">Medical History</h3>
+                <button id="closeRecordsModal" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+            </div>
+            
+            <div style="margin-bottom:20px;">
+                <h2 id="recordStudentName" style="margin:0; color:var(--uep-blue);">Student Name</h2>
+                <p style="margin:5px 0 0 0; color:#666;">ID: <span id="recordStudentID">---</span></p>
+            </div>
+
+            <div style="max-height: 300px; overflow-y: auto;">
+                <table class="recent-table admin-table light-mode" style="font-size:14px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Reason</th>
+                            <th>Diagnosis</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordHistoryBody">
+                        </tbody>
+                </table>
+            </div>
+            <div style="margin-top:20px; text-align:right;">
+                <button class="btn-cancel" onclick="document.getElementById('medicalRecordsModal').classList.remove('active')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
