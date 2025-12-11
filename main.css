@@ -1324,6 +1324,15 @@ body.register-page::after {
         content: attr(data-label); 
     }
     
+    /* Fix for "No active appointments found" row */
+    .admin-table td[colspan="7"] {
+        text-align: center;
+        padding-left: 15px !important;
+    }
+    .admin-table td[colspan="7"]::before {
+        display: none;
+    }
+    
     .info-card { padding: 15px; }
 
     /* 4. OTHER PAGE FIXES */

@@ -531,7 +531,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         if (!hasAppointment) {
-            adminAppList.innerHTML = `<tr><td colspan="7" style="text-align:center;">No active appointments found.</td></tr>`;
+            // FIX: Use colspan but ensure CSS handles it gracefully
+            adminAppList.innerHTML = `<tr><td colspan="7">No active appointments found.</td></tr>`;
         }
 
         // --- BUTTON HANDLERS ---
