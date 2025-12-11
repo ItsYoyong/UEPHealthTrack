@@ -649,7 +649,7 @@ document.addEventListener('DOMContentLoaded', function() {
             settingsBtn.addEventListener('click', () => { 
                 // Load Toggle State (Check if LOCKED is true, if so, checkbox should be false)
                 const isLocked = localStorage.getItem('uep_system_locked') === 'true';
-                toggleBooking.checked = !isLocked; 
+                if(toggleBooking) toggleBooking.checked = !isLocked; 
                 settingsModal.classList.add('active'); 
             });
             
@@ -717,8 +717,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 const newPass = document.getElementById('newAdminPass').value.trim();
                 
                 // Save Lock State (Inverted because checkbox is "Enable")
-                const lockSystem = !toggleBooking.checked;
-                localStorage.setItem('uep_system_locked', lockSystem);
+                if(toggleBooking) {
+                    const lockSystem = !toggleBooking.checked;
+                    localStorage.setItem('uep_system_locked', lockSystem);
+                }
 
                 // Save Creds
                 if(newUser && newPass) {
