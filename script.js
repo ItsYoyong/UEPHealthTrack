@@ -505,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (user.date) {
                 hasAppointment = true;
                 const row = document.createElement('tr');
-                // Added data-label for Mobile Cards
+                // Added data-label for Mobile Cards (THIS IS CRITICAL FOR THE CSS FIX)
                 row.innerHTML = `
                     <td data-label="Student Name">${user.fullName}</td>
                     <td data-label="Student ID">${user.id}</td>
