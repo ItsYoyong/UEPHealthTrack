@@ -154,10 +154,12 @@
                 <h3 class="modal-title" style="border:none; margin:0;">Medical History</h3>
                 <button id="closeRecordsModal" class="no-print" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
             </div>
+            
             <div style="margin-bottom:20px;">
                 <h2 id="recordStudentName" style="margin:0; color:var(--uep-blue);">Student Name</h2>
                 <p style="margin:5px 0 0 0; color:#666;">ID: <span id="recordStudentID">---</span></p>
             </div>
+
             <div style="max-height: 300px; overflow-y: auto;">
                 <table class="recent-table admin-table light-mode" style="font-size:14px;">
                     <thead>
@@ -168,7 +170,8 @@
                             <th>Recommendation</th>
                         </tr>
                     </thead>
-                    <tbody id="recordHistoryBody"></tbody>
+                    <tbody id="recordHistoryBody">
+                        </tbody>
                 </table>
             </div>
             <div style="margin-top:20px; text-align:right; display:flex; gap:10px; justify-content:flex-end;">
