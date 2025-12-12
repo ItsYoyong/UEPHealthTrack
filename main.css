@@ -311,6 +311,8 @@ body {
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 20px;
+    /* FIX: Prevents grid blowout on overflow */
+    min-width: 0; 
 }
 
 .card-header-row {
@@ -1306,6 +1308,14 @@ body.register-page::after {
 /* CRITICAL MOBILE FIXES (Responsive Tables & Layout)                        */
 /* ========================================================================= */
 
+/* NEW: General Table Scroll Wrapper Style (Applies to ALL screen sizes) */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    border-radius: 8px;
+}
+
 @media (max-width: 768px) {
     
     /* 1. LAYOUT STACKING */
@@ -1436,4 +1446,61 @@ body.register-page::after {
     .director-card { flex-direction: column !important; text-align: center !important; max-width: 100% !important; }
     .director-img-box { width: 100% !important; height: 250px !important; border-right: none !important; border-bottom: 3px solid var(--uep-orange) !important; }
     .director-info-box { padding: 20px 15px !important; }
+}
+
+/* ========================================= */
+/* PRINT STYLES (For Reports/Records)        */
+/* ========================================= */
+
+@media print {
+    /* 1. Hide everything by default */
+    body * {
+        visibility: hidden;
+    }
+
+    /* 2. Make the Modal Content Visible */
+    #medicalRecordsModal, 
+    #medicalRecordsModal * {
+        visibility: visible;
+    }
+
+    /* 3. Position the Modal nicely on the paper */
+    #medicalRecordsModal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        background: white;
+        display: block !important; /* Ensure it shows even if hidden in CSS */
+        padding: 0;
+        margin: 0;
+        z-index: 9999;
+    }
+
+    .modal-content {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+    }
+
+    /* 4. Hide Buttons (Print, Close, X) */
+    .no-print {
+        display: none !important;
+    }
+
+    /* 5. Fix Scrollbars for Printing */
+    .modal-content > div {
+        max-height: none !important;
+        overflow: visible !important;
+    }
+
+    /* 6. Ensure Table looks good on paper */
+    .admin-table th {
+        background-color: #f0f0f0 !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact; 
+    }
 }

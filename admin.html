@@ -44,7 +44,7 @@
                     </svg>
                     <h3>ACTIVE APPOINTMENTS</h3>
                 </div>
-                <div style="width:100%;">
+                <div class="table-responsive">
                     <table class="recent-table admin-table">
                         <thead>
                             <tr>
@@ -73,7 +73,7 @@
                     </svg>
                     <h3 style="color: var(--uep-blue);">STUDENT RECORDS DATABASE</h3>
                 </div>
-                <div style="width:100%;">
+                <div class="table-responsive">
                     <table class="recent-table admin-table light-mode">
                         <thead>
                             <tr>
@@ -95,7 +95,6 @@
         <div class="modal-content">
             <h3 class="modal-title">Admin System Settings</h3>
             <form id="adminSettingsForm">
-                
                 <h4 style="color:var(--uep-blue); margin-bottom:10px; border-bottom:1px solid #eee;">Admin Account</h4>
                 <div class="form-group">
                     <label>Change Username</label>
@@ -105,27 +104,21 @@
                     <label>Change Password</label>
                     <input type="password" id="newAdminPass" placeholder="Leave blank to keep current">
                 </div>
-
                 <h4 style="color:var(--uep-orange); margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">System Controls</h4>
-                
                 <div class="form-group" style="display:flex; align-items:center; gap:10px; background:#f9f9f9; padding:10px; border-radius:5px;">
                     <input type="checkbox" id="toggleBookingSystem" style="width:20px; height:20px;" checked>
                     <label for="toggleBookingSystem" style="margin:0; cursor:pointer;">Enable Student Booking System</label>
                 </div>
                 <p style="font-size:12px; color:gray; margin-top:5px;">Unchecking this will lock the calendar for all students.</p>
-
                 <h4 style="color:#28a745; margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">Data Management</h4>
-                
                 <div style="display:flex; gap:10px;">
                     <button type="button" id="btnExportCSV" style="flex:1; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
                         <i class="fas fa-file-excel"></i> Export to Excel (CSV)
                     </button>
-                    
                     <button type="button" id="btnClearData" style="flex:1; background:#d9534f; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
                         <i class="fas fa-trash"></i> Reset System
                     </button>
                 </div>
-
                 <div class="modal-actions" style="margin-top:25px;">
                     <button type="button" id="cancelAdminSettings" class="btn-cancel">Close</button>
                     <button type="submit" class="btn-save">Save Changes</button>
@@ -139,17 +132,14 @@
             <h3 class="modal-title" id="modalTitleText">Complete Appointment</h3>
             <p style="margin-bottom:15px;">Patient: <strong id="diagPatientName">Student</strong></p>
             <form id="diagnosisForm">
-                
                 <div class="form-group">
                     <label id="lblDiagnosis">Doctor's Diagnosis / Findings</label>
                     <textarea id="diagInput" rows="2" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Common Cold, Physically Fit" required></textarea>
                 </div>
-
                 <div class="form-group">
                     <label id="lblRecommendation">Recommendation / Prescription</label>
                     <textarea id="diagRecInput" rows="3" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Rest for 3 days, Issued Certificate" required></textarea>
                 </div>
-
                 <div class="modal-actions">
                     <button type="button" id="cancelDiagBtn" class="btn-cancel">Cancel</button>
                     <button type="submit" class="btn-save">Save & Complete</button>
@@ -159,10 +149,10 @@
     </div>
 
     <div id="medicalRecordsModal" class="modal-overlay">
-        <div class="modal-content" style="max-width: 900px;"> 
+        <div class="modal-content" style="max-width: 900px;" id="printableRecordArea"> 
             <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:3px solid var(--uep-orange); padding-bottom:10px; margin-bottom:20px;">
                 <h3 class="modal-title" style="border:none; margin:0;">Medical History</h3>
-                <button id="closeRecordsModal" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
+                <button id="closeRecordsModal" class="no-print" style="background:none; border:none; font-size:24px; cursor:pointer;">&times;</button>
             </div>
             
             <div style="margin-bottom:20px;">
@@ -184,8 +174,11 @@
                         </tbody>
                 </table>
             </div>
-            <div style="margin-top:20px; text-align:right;">
-                <button class="btn-cancel" onclick="document.getElementById('medicalRecordsModal').classList.remove('active')">Close</button>
+            <div style="margin-top:20px; text-align:right; display:flex; gap:10px; justify-content:flex-end;">
+                <button type="button" class="btn-save no-print" onclick="window.print()" style="background-color: var(--uep-blue); width:auto; padding:10px 20px;">
+                    <i class="fas fa-print"></i> Print Record
+                </button>
+                <button class="btn-cancel no-print" style="width:auto;" onclick="document.getElementById('medicalRecordsModal').classList.remove('active')">Close</button>
             </div>
         </div>
     </div>
