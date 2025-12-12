@@ -537,13 +537,43 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // --- BUTTON HANDLERS ---
         
-        // 1. Open Diagnosis Modal
+        // 1. Open Diagnosis Modal (UPDATED LOGIC with Smart Labels)
         document.querySelectorAll('.mark-done-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 currentPatientUsername = this.getAttribute('data-user');
-                document.getElementById('diagPatientName').innerText = allUsers[currentPatientUsername].fullName;
+                const user = allUsers[currentPatientUsername];
+
+                // Set Name
+                document.getElementById('diagPatientName').innerText = user.fullName;
+
+                // --- SMART LABELS: Check if it's a Certificate Request ---
+                const isCert = user.reason.toLowerCase().includes('certificate');
+                const lblDiag = document.getElementById('lblDiagnosis');
+                const lblRec = document.getElementById('lblRecommendation');
+                const title = document.getElementById('modalTitleText');
+                
+                // Reset inputs
                 diagInput.value = ""; 
                 diagRecInput.value = "";
+
+                if (isCert) {
+                    // It is a Certificate -> Change Labels for Clearance
+                    title.innerText = "Issue Certificate / Clearance";
+                    lblDiag.innerText = "Clearance Findings / Remarks";
+                    diagInput.placeholder = "e.g. Physically Fit, No Dental Issues";
+                    
+                    lblRec.innerText = "Action Taken";
+                    diagRecInput.value = "Issued Medical/Dental Certificate"; // Pre-fill for convenience
+                } else {
+                    // It is a regular Checkup -> Default Labels
+                    title.innerText = "Complete Appointment";
+                    lblDiag.innerText = "Doctor's Diagnosis / Findings";
+                    diagInput.placeholder = "e.g. Common Cold, Fever";
+                    
+                    lblRec.innerText = "Recommendation / Prescription";
+                    diagRecInput.placeholder = "e.g. Prescribed Paracetamol 500mg";
+                }
+
                 diagModal.classList.add('active');
             });
         });

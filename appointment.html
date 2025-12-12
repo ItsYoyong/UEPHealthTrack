@@ -64,12 +64,27 @@
                     <label>Reason for Visit</label>
                     <select id="reason" class="reason-box" style="cursor: pointer;">
                         <option value="" disabled selected>-- Select a Reason --</option>
-                        <option value="Medical Consultation">Medical Consultation (Check-up)</option>
-                        <option value="Dental Checkup">Dental Checkup / Cleaning</option>
-                        <option value="Medical Certificate">Medical Certificate (Enrollment/OJT)</option>
-                        <option value="Laboratory Request">Laboratory Request / Results</option>
-                        <option value="First Aid">First Aid / Minor Injury</option>
-                        <option value="Follow-up Checkup">Follow-up Checkup</option>
+                        
+                        <optgroup label="Medical Services">
+                            <option value="Medical Consultation">Medical Consultation</option>
+                            <option value="Urgent Care">Urgent Care</option>
+                            <option value="Holistic Care">Holistic Care</option>
+                            <option value="Wound Care">Wound Care</option>
+                            <option value="Wellness Check">Wellness Check</option>
+                            <option value="Medical Certificate">Medical Certificate</option>
+                            <option value="Request Medical Records">Request Medical Records</option>
+                        </optgroup>
+
+                        <optgroup label="Dental Services">
+                            <option value="Dental Examination">Dental Examination</option>
+                            <option value="Oral Prophylaxis">Oral Prophylaxis</option>
+                            <option value="Temporary Filling">Temporary Filling</option>
+                            <option value="Fluoride Varnish Application">Fluoride Varnish Application</option>
+                            <option value="Tooth Extraction">Tooth Extraction</option>
+                            <option value="Dental Certificate">Dental Certificate</option>
+                            <option value="Request Dental Records">Request Dental Records</option>
+                        </optgroup>
+
                         <option value="Other">Other</option>
                     </select>
                     <input type="text" id="otherReason" placeholder="Please specify your reason..." style="display:none; margin-top:10px; border-color: var(--uep-orange);" class="reason-box">

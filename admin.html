@@ -136,18 +136,18 @@
 
     <div id="diagnosisModal" class="modal-overlay">
         <div class="modal-content">
-            <h3 class="modal-title">Complete Appointment</h3>
+            <h3 class="modal-title" id="modalTitleText">Complete Appointment</h3>
             <p style="margin-bottom:15px;">Patient: <strong id="diagPatientName">Student</strong></p>
             <form id="diagnosisForm">
                 
                 <div class="form-group">
-                    <label>Doctor's Diagnosis / Findings</label>
-                    <textarea id="diagInput" rows="2" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Common Cold, Fever" required></textarea>
+                    <label id="lblDiagnosis">Doctor's Diagnosis / Findings</label>
+                    <textarea id="diagInput" rows="2" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Common Cold, Physically Fit" required></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label>Recommendation / Prescription</label>
-                    <textarea id="diagRecInput" rows="3" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Prescribed Paracetamol 500mg, Bed rest for 3 days." required></textarea>
+                    <label id="lblRecommendation">Recommendation / Prescription</label>
+                    <textarea id="diagRecInput" rows="3" style="width:100%; padding:10px; border:1px solid #333; border-radius:6px;" placeholder="e.g. Rest for 3 days, Issued Certificate" required></textarea>
                 </div>
 
                 <div class="modal-actions">
