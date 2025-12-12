@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEP HealthTrack - Book Appointment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <a href="home.html" class="logo-container">
+                <img src="images/UEPlogo.png" alt="UEP" class="logo-img" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <span class="uep-part">UEP</span>
+                    <span class="healthtrack-part">HEALTHTRACK</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="home.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Services</a>
+                <a href="appointment.html" class="btn-appointment">Appointment</a>
+                <div class="user-icon" onclick="window.location.href='profile.html'">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="page-container">
+        <div class="page-title-group">
+            <h1>BOOK NEW <br>APPOINTMENT</h1>
+            <div class="title-accent-line"></div>
+        </div>
+        <div class="content-wrapper">
+            <form class="appointment-form" id="bookingForm">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" id="lastName" readonly style="background-color: #e9ecef;">
+                    </div>
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" id="firstName" readonly style="background-color: #e9ecef;">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Middle Name</label>
+                        <input type="text" id="middleName" readonly style="background-color: #e9ecef;" placeholder="No Middle Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Student ID</label>
+                        <input type="text" id="studentID" readonly style="background-color: #e9ecef;">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Reason for Visit</label>
+                    <select id="reason" class="reason-box" style="cursor: pointer;">
+                        <option value="" disabled selected>-- Select a Reason --</option>
+                        
+                        <optgroup label="Medical Services">
+                            <option value="Medical Consultation">Medical Consultation</option>
+                            <option value="Urgent Care">Urgent Care</option>
+                            <option value="Holistic Care">Holistic Care</option>
+                            <option value="Wound Care">Wound Care</option>
+                            <option value="Wellness Check">Wellness Check</option>
+                            <option value="Medical Certificate">Medical Certificate</option>
+                            <option value="Request Medical Records">Request Medical Records</option>
+                        </optgroup>
+
+                        <optgroup label="Dental Services">
+                            <option value="Dental Examination">Dental Examination</option>
+                            <option value="Oral Prophylaxis">Oral Prophylaxis</option>
+                            <option value="Temporary Filling">Temporary Filling</option>
+                            <option value="Fluoride Varnish Application">Fluoride Varnish Application</option>
+                            <option value="Tooth Extraction">Tooth Extraction</option>
+                            <option value="Dental Certificate">Dental Certificate</option>
+                            <option value="Request Dental Records">Request Dental Records</option>
+                        </optgroup>
+
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="text" id="otherReason" placeholder="Please specify your reason..." style="display:none; margin-top:10px; border-color: var(--uep-orange);" class="reason-box">
+                </div>
+
+                <div class="calendar-section">
+                    <h2 style="color:var(--uep-blue); text-align:center;">Select Date</h2>
+                    <div class="calendar-card">
+                        <div class="calendar-header">
+                            <button type="button" id="prevMonth" class="nav-btn">&#10094;</button>
+                            <h3 id="currentMonthYear"></h3>
+                            <button type="button" id="nextMonth" class="nav-btn">&#10095;</button>
+                        </div>
+
+                        <div class="calendar-days-header">
+                            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                        </div>
+
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top:20px;">
+                    <p>Selected Date: <strong id="selectedDateDisplay" style="color:var(--uep-orange);">None</strong></p>
+                    <h3 style="margin-top:15px; font-size:16px;">Select Time:</h3>
+                    <div class="time-selection-grid">
+                        <button type="button" class="time-btn" data-time="8:00AM - 9:00AM">8:00AM - 9:00AM <span class="btn-count-text">Checking...</span></button>
+                        <button type="button" class="time-btn" data-time="10:00AM - 11:00AM">10:00AM - 11:00AM <span class="btn-count-text">Checking...</span></button>
+                        <button type="button" class="time-btn" data-time="1:00PM - 2:00PM">1:00PM - 2:00PM <span class="btn-count-text">Checking...</span></button>
+                        <button type="button" class="time-btn" data-time="3:00PM - 5:00PM">3:00PM - 5:00PM <span class="btn-count-text">Checking...</span></button>
+                    </div>
+                    <div id="slotStatusDisplay" class="slot-status-box">
+                        <div class="status-text" id="statusTextContent">Checking...</div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="progressBarFill"></div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn-submit" id="confirmBtn" style="margin-top:30px;">CONFIRM APPOINTMENT</button>
+            </form>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

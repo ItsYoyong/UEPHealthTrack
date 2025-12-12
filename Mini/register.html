@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UEP HealthTrack - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="register-page">
+    
+    <div class="register-layout-container">
+        
+        <div class="register-welcome-text">
+            <h1>WELCOME TO</h1>
+            <h2>UNIVERSITY MEDICAL & <br>DENTAL CLINIC</h2>
+        </div>
+        
+        <div class="register-card-glass">
+            <h3 class="form-header">Create Account</h3>
+            
+            <form id="registerForm" autocomplete="off">
+                
+                <div class="glass-input-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" required autocomplete="off" placeholder="Create a username">
+                </div>
+                
+                <div class="glass-input-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" required autocomplete="off" placeholder="Create a password">
+                </div>
+
+                <div class="form-row-glass">
+                    <div class="glass-input-group">
+                        <label>First Name</label>
+                        <input type="text" id="regFName" required autocomplete="off" placeholder="Given Name">
+                    </div>
+                    <div class="glass-input-group">
+                        <label>Middle Name</label>
+                        <input type="text" id="regMName" autocomplete="off" placeholder="Optional">
+                    </div>
+                </div>
+                
+                <div class="form-row-glass">
+                    <div class="glass-input-group">
+                        <label>Surname</label>
+                        <input type="text" id="regLName" required autocomplete="off" placeholder="Family Name">
+                    </div>
+                    <div class="glass-input-group">
+                        <label>Suffix</label>
+                        <select id="regSuffix" class="glass-select">
+                            <option value="" selected>N/A</option>
+                            <option value="Jr.">Jr.</option>
+                            <option value="Sr.">Sr.</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row-glass">
+                    <div class="glass-input-group">
+                        <label>Sex</label>
+                        <select id="regSex" class="glass-select" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                    <div class="glass-input-group">
+                        <label>School ID</label>
+                        <input type="text" id="regID" required autocomplete="off" 
+                               maxlength="6" 
+                               placeholder="123456"
+                               oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-create">Create Account</button>
+                </div>
+                
+                <div class="login-redirect no-frame">
+                    Already have an account? <a href="login.html">Login here</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
