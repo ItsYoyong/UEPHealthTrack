@@ -1305,31 +1305,24 @@ body.register-page::after {
 }
 
 /* ========================================================================= */
-/* CRITICAL MOBILE FIXES (Responsive Tables & Layout)                        */
+/* CRITICAL MOBILE FIXES (Card View)                                         */
 /* ========================================================================= */
-
-/* NEW: General Table Scroll Wrapper Style (Applies to ALL screen sizes) */
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    border-radius: 8px;
-}
 
 @media (max-width: 768px) {
     
-    /* 1. LAYOUT STACKING */
+    /* 1. LAYOUT & SPACING */
+    .page-container {
+        padding: 10px !important;
+        max-width: 100% !important;
+    }
+
     .dashboard-grid {
         display: flex !important;
         flex-direction: column !important;
-        gap: 25px !important;
+        gap: 20px !important;
     }
 
-    .page-container {
-        padding: 10px !important;
-    }
-
-    /* 2. HEADER ADJUSTMENTS */
+    /* 2. HEADER FIXES */
     .site-header { 
         height: auto !important; 
         padding: 15px 10px !important; 
@@ -1341,12 +1334,14 @@ body.register-page::after {
     }
 
     .logo-container {
-        justify-content: center !important;
         width: 100% !important;
+        justify-content: center !important;
     }
 
+    /* Resize Text for Mobile */
     .brand-text .uep-part { font-size: 32px !important; }
     .brand-text .healthtrack-part { font-size: 24px !important; }
+    .page-title-group h1 { font-size: 28px !important; }
 
     .main-nav {
         flex-wrap: wrap !important;
@@ -1354,98 +1349,110 @@ body.register-page::after {
         gap: 10px !important;
     }
 
-    /* 3. TABLE TO CARD TRANSFORMATION (The Magic Part) */
+    /* 3. TABLE -> CARD VIEW TRANSFORMATION */
     
-    /* Force table elements to act like block elements */
+    /* Hide scrollbars for the card view */
+    .table-responsive {
+        overflow: visible !important; 
+    }
+
+    /* Force Table Elements to be Blocks */
     .admin-table, 
     .admin-table tbody, 
     .admin-table tr, 
     .admin-table td {
         display: block !important;
         width: 100% !important;
+        box-sizing: border-box !important; /* Critical for padding */
     }
 
-    /* Hide the table header row completely */
+    /* Reset the min-width that was causing overflow */
+    .admin-table {
+        min-width: 0 !important; 
+    }
+
+    /* Hide Table Headers */
     .admin-table thead {
         display: none !important;
     }
 
-    /* Style each ROW as a separate CARD */
+    /* Style Rows as Cards */
     .admin-table tr {
         background: white !important;
         border: 2px solid var(--uep-blue) !important;
         border-radius: 12px !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 15px !important;
         padding: 15px !important;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
-        position: relative !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0 !important;
     }
 
-    /* Style each CELL to look like a list item */
+    /* Style Cells (Data) */
     .admin-table td {
         border: none !important;
         border-bottom: 1px solid #eee !important;
+        padding: 10px 0 10px 45% !important; /* Indent for content */
         position: relative !important;
-        padding-left: 50% !important; /* Make space for the label on the left */
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
-        text-align: right !important; /* Content aligns right */
+        text-align: right !important;
         font-size: 14px !important;
         color: #333 !important;
-        min-height: 40px !important; /* Ensure height for label */
+        min-height: 30px !important;
     }
 
-    /* Remove border from the last item in the card */
-    .admin-table td:last-child {
-        border-bottom: none !important;
-        padding-bottom: 0 !important;
-        display: flex !important;
-        justify-content: flex-end !important; /* Align button to right */
-    }
-
-    /* Inject the Label (e.g., "Student Name") from data-label attribute */
+    /* Add Labels (e.g. "Student Name") via CSS */
     .admin-table td::before {
-        content: attr(data-label); /* Grabs the text from HTML */
+        content: attr(data-label);
         position: absolute !important;
         left: 0 !important;
-        top: 10px !important;
-        width: 45% !important;
+        top: 12px !important; /* Align with text */
+        width: 40% !important;
         text-align: left !important;
         font-weight: 800 !important;
         color: var(--uep-blue) !important;
         text-transform: uppercase !important;
         font-size: 12px !important;
+        white-space: nowrap !important;
     }
 
-    /* Fix for "No appointments found" row */
-    .admin-table td[colspan="7"] {
-        text-align: center !important;
-        padding: 20px !important;
+    /* Remove border from last item */
+    .admin-table td:last-child {
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
+        display: flex !important;
+        justify-content: flex-end !important;
         padding-left: 0 !important;
-        color: #777 !important;
+    }
+    
+    /* Hide label for buttons row if needed */
+    .admin-table td:last-child::before {
+        display: none !important;
+    }
+
+    /* Fix "No appointments found" Message */
+    .admin-table td[colspan="7"] {
+        padding: 20px !important;
+        text-align: center !important;
+        padding-left: 0 !important;
     }
     .admin-table td[colspan="7"]::before {
         display: none !important;
     }
 
-    /* 4. BUTTONS & INPUTS MOBILE SIZE */
+    /* 4. BUTTONS & INPUTS */
     .btn-appointment, .mark-done-btn, .view-history-btn {
         width: 100% !important;
         text-align: center !important;
         display: block !important;
     }
 
-    /* 5. SERVICES PAGE & OTHER FIXES */
-    .separator-title { font-size: 18px !important; }
-    .services-grid { grid-template-columns: 1fr !important; }
-    .hero-content { grid-template-columns: 1fr !important; }
-    .hero-text h1 { font-size: 32px !important; }
-    .hero-stats { flex-wrap: wrap !important; justify-content: center !important; }
-    .about-grid-layout { grid-template-columns: 1fr !important; }
-    .mission-banner { flex-direction: column !important; text-align: center !important; }
-    .director-card { flex-direction: column !important; text-align: center !important; max-width: 100% !important; }
+    /* 5. OTHER PAGE FIXES */
+    .info-card { padding: 15px !important; }
+    .director-card { flex-direction: column !important; text-align: center !important; }
     .director-img-box { width: 100% !important; height: 250px !important; border-right: none !important; border-bottom: 3px solid var(--uep-orange) !important; }
-    .director-info-box { padding: 20px 15px !important; }
+    .about-grid-layout { grid-template-columns: 1fr !important; }
+    .services-grid { grid-template-columns: 1fr !important; }
 }
 
 /* ========================================= */
