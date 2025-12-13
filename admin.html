@@ -33,15 +33,8 @@
         </div>
 
         <div class="dashboard-grid" style="grid-template-columns: 1fr;">
-            
             <div class="info-card">
                 <div class="card-header-row">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="margin-right:10px;">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
                     <h3>ACTIVE APPOINTMENTS</h3>
                 </div>
                 <div class="table-responsive">
@@ -57,20 +50,13 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody id="adminAppointmentList">
-                            </tbody>
+                        <tbody id="adminAppointmentList"></tbody>
                     </table>
                 </div>
             </div>
 
             <div class="info-card" style="background-color: white; border: 2px solid var(--uep-blue);">
                 <div class="card-header-row">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--uep-blue)" stroke-width="2" style="margin-right:10px;">
-                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
                     <h3 style="color: var(--uep-blue);">STUDENT RECORDS DATABASE</h3>
                 </div>
                 <div class="table-responsive">
@@ -83,8 +69,7 @@
                                 <th>Status</th>
                                 <th>Medical Records</th> </tr>
                         </thead>
-                        <tbody id="adminStudentList">
-                            </tbody>
+                        <tbody id="adminStudentList"></tbody>
                     </table>
                 </div>
             </div>
@@ -92,7 +77,7 @@
     </main>
 
     <div id="adminSettingsModal" class="modal-overlay">
-        <div class="modal-content">
+        <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
             <h3 class="modal-title">Admin System Settings</h3>
             <form id="adminSettingsForm">
                 <h4 style="color:var(--uep-blue); margin-bottom:10px; border-bottom:1px solid #eee;">Admin Account</h4>
@@ -104,21 +89,36 @@
                     <label>Change Password</label>
                     <input type="password" id="newAdminPass" placeholder="Leave blank to keep current">
                 </div>
-                <h4 style="color:var(--uep-orange); margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">System Controls</h4>
+
+                <h4 style="color:var(--uep-orange); margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">Manage Clinic Schedule</h4>
+                <div style="background:#f9f9f9; padding:10px; border-radius:5px; margin-bottom:15px;">
+                    <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Add New Time Slot:</label>
+                    <div style="display:flex; gap:5px; margin-bottom:10px;">
+                        <input type="text" id="newSlotInput" placeholder="e.g. 1:00PM - 2:00PM" style="flex:1; font-size:13px;">
+                        <button type="button" id="btnAddSlot" style="background:var(--uep-blue); color:white; border:none; padding:5px 10px; border-radius:4px; font-weight:bold; cursor:pointer;">Add</button>
+                    </div>
+                    
+                    <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Current Slots:</label>
+                    <div id="scheduleList" style="max-height:150px; overflow-y:auto; border:1px solid #ddd; padding:5px; background:white;">
+                        </div>
+                </div>
+
+                <h4 style="color:var(--uep-orange); margin-top:10px; margin-bottom:10px; border-bottom:1px solid #eee;">System Controls</h4>
                 <div class="form-group" style="display:flex; align-items:center; gap:10px; background:#f9f9f9; padding:10px; border-radius:5px;">
                     <input type="checkbox" id="toggleBookingSystem" style="width:20px; height:20px;" checked>
                     <label for="toggleBookingSystem" style="margin:0; cursor:pointer;">Enable Student Booking System</label>
                 </div>
-                <p style="font-size:12px; color:gray; margin-top:5px;">Unchecking this will lock the calendar for all students.</p>
+
                 <h4 style="color:#28a745; margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">Data Management</h4>
                 <div style="display:flex; gap:10px;">
                     <button type="button" id="btnExportCSV" style="flex:1; background:#28a745; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
-                        <i class="fas fa-file-excel"></i> Export to Excel (CSV)
+                        <i class="fas fa-file-excel"></i> Export to Excel
                     </button>
                     <button type="button" id="btnClearData" style="flex:1; background:#d9534f; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer; font-weight:bold;">
                         <i class="fas fa-trash"></i> Reset System
                     </button>
                 </div>
+
                 <div class="modal-actions" style="margin-top:25px;">
                     <button type="button" id="cancelAdminSettings" class="btn-cancel">Close</button>
                     <button type="submit" class="btn-save">Save Changes</button>
@@ -170,8 +170,7 @@
                             <th>Recommendation</th>
                         </tr>
                     </thead>
-                    <tbody id="recordHistoryBody">
-                        </tbody>
+                    <tbody id="recordHistoryBody"></tbody>
                 </table>
             </div>
             <div style="margin-top:20px; text-align:right; display:flex; gap:10px; justify-content:flex-end;">

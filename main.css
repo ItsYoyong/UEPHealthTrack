@@ -368,6 +368,13 @@ body {
     background-color: white;
 }
 
+/* Prevents Zoom on iPhone inputs */
+@media screen and (max-width: 768px) {
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
 .btn-submit {
     width: 100%;
     background: var(--uep-orange);
@@ -1106,7 +1113,7 @@ body.register-page::after {
     text-transform: uppercase;
 }
 
-/* --- LEADERSHIP SECTION FIX (WITH !IMPORTANT) --- */
+/* --- LEADERSHIP SECTION FIX --- */
 .leadership-section {
     margin-bottom: 40px;
     text-align: center;
@@ -1134,11 +1141,10 @@ body.register-page::after {
     position: relative;
 }
 
-/* CRITICAL: object-fit: cover prevents stretching */
 .director-img-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover !important; 
+    object-fit: cover !important; /* CRITICAL FIX */
     object-position: top center;
     display: block;
 }
@@ -1178,7 +1184,7 @@ body.register-page::after {
 
 .admin-table {
     width: 100%;
-    min-width: 800px; /* Forces Horizontal Scroll */
+    min-width: 800px; 
 }
 
 .admin-table th {
@@ -1308,7 +1314,7 @@ body.register-page::after {
 }
 
 /* ========================================================================= */
-/* CRITICAL MOBILE FIXES (Responsive Tables & Layout)                        */
+/* CRITICAL MOBILE FIXES (Responsive Tables, Layout & Forms)                 */
 /* ========================================================================= */
 
 /* NEW: General Table Scroll Wrapper Style (Applies to ALL screen sizes) */
@@ -1319,6 +1325,7 @@ body.register-page::after {
     border-radius: 8px;
     margin-bottom: 15px;
     border: 1px solid #ddd; /* Visual cue for scrolling */
+    display: block;
 }
 
 @media (max-width: 768px) {
@@ -1334,7 +1341,7 @@ body.register-page::after {
         padding: 10px !important;
     }
 
-    /* 2. HEADER ADJUSTMENTS */
+    /* 2. HEADER ADJUSTMENTS (FIXED FONT SIZES) */
     .site-header { 
         height: auto !important; 
         padding: 15px 10px !important; 
@@ -1350,8 +1357,10 @@ body.register-page::after {
         width: 100% !important;
     }
 
-    .brand-text .uep-part { font-size: 32px !important; }
-    .brand-text .healthtrack-part { font-size: 24px !important; }
+    /* Smaller fonts for mobile header */
+    .brand-text .uep-part { font-size: 28px !important; }
+    .brand-text .healthtrack-part { font-size: 20px !important; }
+    .logo-img { height: 50px !important; }
 
     .main-nav {
         flex-wrap: wrap !important;
@@ -1361,9 +1370,9 @@ body.register-page::after {
 
     /* 3. TABLE TO SCROLLABLE FIX */
     .table-responsive {
-        display: block;
-        width: 100%;
-        overflow-x: auto; /* Force horizontal scroll */
+        display: block !important;
+        width: 100% !important;
+        overflow-x: scroll !important; /* Force horizontal scroll */
         -webkit-overflow-scrolling: touch;
     }
 
@@ -1396,10 +1405,21 @@ body.register-page::after {
     }
 
     .director-info-box {
-        padding: 20px !important;
+        padding: 20px 15px !important;
     }
 
-    /* 6. OTHER PAGE FIXES */
+    /* 6. APPOINTMENT FORM FIXES (VERTICAL STACK) */
+    .form-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .time-selection-grid {
+        grid-template-columns: 1fr !important; /* Stack time buttons vertically */
+    }
+
+    /* 7. OTHER PAGE FIXES */
     .separator-title { font-size: 18px !important; }
     .services-grid { grid-template-columns: 1fr !important; }
     .hero-content { grid-template-columns: 1fr !important; }
