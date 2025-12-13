@@ -311,6 +311,7 @@ body {
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 20px;
+    overflow: hidden; 
 }
 
 .card-header-row {
@@ -1133,10 +1134,11 @@ body.register-page::after {
     position: relative;
 }
 
+/* CRITICAL: object-fit: cover prevents stretching */
 .director-img-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover !important; /* CRITICAL FIX for stretched image */
+    object-fit: cover !important; 
     object-position: top center;
     display: block;
 }
