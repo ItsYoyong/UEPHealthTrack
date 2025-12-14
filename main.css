@@ -311,7 +311,6 @@ body {
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 20px;
-    overflow: hidden; 
 }
 
 .card-header-row {
@@ -1198,6 +1197,12 @@ body.register-page::after {
     border-bottom: 2px solid var(--uep-blue);
 }
 
+/* FORCE DARK TEXT FOR STUDENT RECORDS TABLE */
+.admin-table.light-mode, 
+.admin-table.light-mode td {
+    color: #333 !important; /* Forces dark text on white background */
+}
+
 .mark-done-btn {
     background-color: #28a745;
     color: white;
@@ -1314,7 +1319,7 @@ body.register-page::after {
 }
 
 /* ========================================================================= */
-/* CRITICAL MOBILE FIXES (Responsive Tables, Layout & Forms)                 */
+/* CRITICAL MOBILE FIXES (Responsive Tables & Layout)                        */
 /* ========================================================================= */
 
 /* NEW: General Table Scroll Wrapper Style (Applies to ALL screen sizes) */
@@ -1408,18 +1413,7 @@ body.register-page::after {
         padding: 20px 15px !important;
     }
 
-    /* 6. APPOINTMENT FORM FIXES (VERTICAL STACK) */
-    .form-row {
-        display: flex !important;
-        flex-direction: column !important;
-        gap: 10px !important;
-    }
-
-    .time-selection-grid {
-        grid-template-columns: 1fr !important; /* Stack time buttons vertically */
-    }
-
-    /* 7. OTHER PAGE FIXES */
+    /* 6. OTHER PAGE FIXES */
     .separator-title { font-size: 18px !important; }
     .services-grid { grid-template-columns: 1fr !important; }
     .hero-content { grid-template-columns: 1fr !important; }
