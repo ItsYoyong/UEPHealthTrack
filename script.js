@@ -3,7 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ============================
     // 1. CONFIGURATION & CONSTANTS
     // ============================
-    const MAX_SLOTS = 10;
+    // Replaced fixed constant with dynamic function
+    function getMaxSlots() {
+        return parseInt(localStorage.getItem('uep_max_slots')) || 10;
+    }
+
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const phHolidays = ["0-1", "1-25", "3-9", "4-1", "5-12", "7-21", "7-26", "10-1", "10-2", "10-30", "11-8", "11-24", "11-25", "11-30", "11-31"];
 
@@ -18,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('uep_admin_creds', JSON.stringify({ user: 'admin', pass: 'admin123' }));
     }
 
-    // 2. Dynamic Time Slots (New Feature)
+    // 2. Dynamic Time Slots
     const defaultSlots = [
         "8:00AM - 9:00AM",
         "10:00AM - 11:00AM",
@@ -289,12 +293,12 @@ document.addEventListener('DOMContentLoaded', function() {
             nextBtn.onclick = () => { currentViewDate.setMonth(currentViewDate.getMonth() + 1); render(currentViewDate); };
         }
 
-        // NEW: Function to render buttons dynamically
+        // Updated Function to render buttons dynamically using getMaxSlots()
         function renderTimeButtons(dateKey) {
             const container = document.querySelector('.time-selection-grid');
-            container.innerHTML = ""; // Clear existing
+            container.innerHTML = ""; 
 
-            const slots = getTimeSlots(); // Get from LocalStorage
+            const slots = getTimeSlots(); 
             const counts = getSlotCounts();
             const dateData = counts[dateKey] || {};
 
@@ -302,6 +306,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.innerHTML = "<p style='grid-column: 1/-1; text-align:center; color:red;'>No slots available.</p>";
                 return;
             }
+
+            // Get the current dynamic limit
+            const currentLimit = getMaxSlots();
 
             slots.forEach(timeSlot => {
                 const current = dateData[timeSlot] || 0;
@@ -316,12 +323,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const countSpan = document.createElement('span');
                 countSpan.className = 'btn-count-text';
-                countSpan.innerText = `${current}/${MAX_SLOTS} slots`;
+                // Display current/limit
+                countSpan.innerText = `${current}/${currentLimit} slots`;
 
                 btn.appendChild(label);
                 btn.appendChild(countSpan);
 
-                if (current >= MAX_SLOTS) {
+                // Use dynamic limit for disabling
+                if (current >= currentLimit) {
                     btn.disabled = true;
                     btn.style.backgroundColor = "#ccc";
                 }
@@ -339,9 +348,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.classList.add('selected');
                     selectedTimeText = timeSlot;
                     
-                    const pct = (current / MAX_SLOTS) * 100;
+                    // Use dynamic limit for percentage
+                    const pct = (current / currentLimit) * 100;
                     document.getElementById('slotStatusDisplay').style.display = 'block';
-                    document.getElementById('statusTextContent').innerText = `${current} / ${MAX_SLOTS} Slots Taken (${Math.round(pct)}%)`;
+                    document.getElementById('statusTextContent').innerText = `${current} / ${currentLimit} Slots Taken (${Math.round(pct)}%)`;
                     document.getElementById('progressBarFill').style.width = `${pct}%`;
                 });
 
@@ -369,7 +379,12 @@ document.addEventListener('DOMContentLoaded', function() {
             let counts = getSlotCounts();
             if (!counts[selectedDateText]) counts[selectedDateText] = {};
             if (!counts[selectedDateText][selectedTimeText]) counts[selectedDateText][selectedTimeText] = 0;
-            if (counts[selectedDateText][selectedTimeText] >= MAX_SLOTS) { alert("Slot Full."); return; }
+            
+            // Check against dynamic limit
+            if (counts[selectedDateText][selectedTimeText] >= getMaxSlots()) { 
+                alert("Slot Full."); 
+                return; 
+            }
 
             counts[selectedDateText][selectedTimeText]++;
             localStorage.setItem('uep_slot_counts', JSON.stringify(counts));
@@ -674,6 +689,11 @@ document.addEventListener('DOMContentLoaded', function() {
             settingsBtn.addEventListener('click', () => { 
                 const isLocked = localStorage.getItem('uep_system_locked') === 'true';
                 if(toggleBooking) toggleBooking.checked = !isLocked; 
+                
+                // NEW: Load saved MAX SLOTS
+                const maxInput = document.getElementById('adminMaxSlots');
+                if(maxInput) maxInput.value = getMaxSlots();
+
                 renderAdminScheduleList(); 
                 settingsModal.classList.add('active'); 
             });
@@ -724,6 +744,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             settingsForm.addEventListener('submit', (e) => {
                 e.preventDefault();
+                
+                // NEW: Save MAX SLOTS
+                const maxSlotsInput = document.getElementById('adminMaxSlots');
+                if(maxSlotsInput && maxSlotsInput.value) {
+                    localStorage.setItem('uep_max_slots', maxSlotsInput.value);
+                }
+
                 const newUser = document.getElementById('newAdminUser').value.trim();
                 const newPass = document.getElementById('newAdminPass').value.trim();
                 

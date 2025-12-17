@@ -92,6 +92,13 @@
 
                 <h4 style="color:var(--uep-orange); margin-top:20px; margin-bottom:10px; border-bottom:1px solid #eee;">Manage Clinic Schedule</h4>
                 <div style="background:#f9f9f9; padding:10px; border-radius:5px; margin-bottom:15px;">
+                    
+                    <div style="margin-bottom: 15px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+                        <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Max Patients Per Slot (Default: 10)</label>
+                        <input type="number" id="adminMaxSlots" min="1" placeholder="Enter limit (e.g. 5)" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                        <small style="color: #666; font-size: 11px;">Reduce this number for half-days or limited availability.</small>
+                    </div>
+
                     <label style="font-size:12px; font-weight:bold; display:block; margin-bottom:5px;">Add New Time Slot:</label>
                     <div style="display:flex; gap:5px; margin-bottom:10px;">
                         <input type="text" id="newSlotInput" placeholder="e.g. 1:00PM - 2:00PM" style="flex:1; font-size:13px;">
